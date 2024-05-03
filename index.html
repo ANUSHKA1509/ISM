@@ -37,34 +37,34 @@
 </head>
 <body>
     <h2 style="text-align: center;">SHOPPING PORTAL</h2>
-    <form id="loginForm">
+    <form id="loginForm" action="Login.html">
         <div class="container">
             <label><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" id="username">
+            <input type="text" placeholder="Enter Username" id="username" name="username">
 
             <label><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" id="password">
+            <input type="password" placeholder="Enter Password" id="password" name="password">
 
             <button type="submit">Login</button>
         </div>
     </form>
 
-	<img src="pickachu.jpg">
+<img src="pickachu.jpg">
 
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent form submission
+    <!-- Display login failed message -->
+    <?php
+        if (isset($_GET['username']) && isset($_GET['password'])) {
+            $username = $_GET['username'];
+            $password = $_GET['password'];
 
-            // Get input values
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-
-            // Check hardcoded credentials (replace with actual validation logic)
-            if (username === "anu" && password === "pwd123") {
-                window.location.href = "login.html"
+            if ($username === "anu" && $password === "pwd123") {
+                // Redirect to Login.html (replace with your actual page)
+                header("Location: login.html");
+                exit;
             } else {
-                alert("Login failed. Incorrect credentials.");             }
-        });
-    </script>
+                echo "<p style='color: red; text-align: center;'>Login failed. Incorrect credentials.</p>";
+            }
+        }
+    ?>
 </body>
 </html>
